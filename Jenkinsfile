@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOTNET_VERSION = '8.0' 
+        DOTNET_VERSION = '8.0'
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
         stage('Setup .NET') {
             steps {
                 script {
-                    def dotnetVersion = sh(script: 'dotnet --version', returnStdout: true).trim()
+                    def dotnetVersion = bat(script: 'dotnet --version', returnStdout: true).trim()
                     echo "Using .NET Version: ${dotnetVersion}"
                 }
             }
@@ -29,19 +29,19 @@ pipeline {
 
         stage('Restore Dependencies') {
             steps {
-                sh 'dotnet restore'
+                bat 'dotnet restore'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'dotnet build --configuration Release --no-restore'
+                bat 'dotnet build --configuration Release --no-restore'
             }
         }
 
         stage('Run Unit & Integration Tests') {
             steps {
-                sh 'dotnet test --configuration Release'
+                bat 'dotnet test --configuration Release'
             }
         }
     }
