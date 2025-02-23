@@ -11,7 +11,7 @@ pipeline {
                 checkout([$class: 'GitSCM', 
                     branches: [[name: 'feature-ci-pipeline']],
                     userRemoteConfigs: [[
-                        url: 'https://github.com/YOUR_GITHUB_USERNAME/REPO_NAME.git',
+                        url: 'https://github.com/bpopovgit/Horizons.git',
                         credentialsId: 'github-credentials'
                     ]]
                 ])
